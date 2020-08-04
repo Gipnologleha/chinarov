@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title align = 'center'>Расчет по методике Чинарова В.И.</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <h3 align = 'center'>Расчет по методике Чинарова В.И.</h3>
+    <p></p>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <h3>Отступ</h3>
+            </div>
+            <div class="col-sm-4" align = 'center'>
+                <h4>Порода 1</h4>
+                <table align = 'center' bgcolor = #E0FFFF style ='width:350px'>
+                    <form method="POST" action="/chinarovcount1">
+                        <tr>
+                            <td>долгота</td>
+                            <td><input type='FloatField' name='chlongtitude1' placeholder=12.3 style="width: 100px" required></td>
+                        </tr>
+                        <tr>
+                            <td>широта</td>
+                            <td><input type='FloatField' name='chlatitude1' placeholder=12.3 style="width: 100px" required></td>
+                        </tr>
+                        <tr>
+                            <td>порода</td>
+                            <td><input type='TextField' name='chbreed1' style="width: 100px" placeholder='holmogorskaya' required ></td>
+                        </tr>
+                        <tr>
+                            <td>направление</td>
+                            <td>                                         
+                                <select style="width: 116px" name='chtype1'>
+                                <option>молочная</option>
+                                <option>комбинированная</option>
+                                <option>интенсивная</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>удой (кг)</td>
+                            <td><input type='FloatField' name='chudoy1' style="width: 100px" placeholder='4563'></td>
+                        </tr>
+                        <tr>
+                            <td>% жира (кг)</td>
+                            <td><input type='FloatField' name='chjir1' style="width: 100px" placeholder='3.86'></td>
+                        </tr>
+                        <tr>
+                            <td>% белка (кг)</td>
+                            <td><input type='FloatField' name='chbelok1' style="width: 100px" placeholder='3.34'></td>
+                        </tr>
+                        <tr>
+                            <td>живая масса(кг)</td>
+                            <td><input type='FloatField' name='chmassa1' style="width: 100px" placeholder='657'></td>
+                        </tr>
+                        <tr>
+                            <td>при первом отеле (дней)</td>
+                            <td><input type='FloatField' name='chperviy_otel_dney1' style="width: 100px" placeholder='871'></td>
+                        </tr>
+                        <tr>
+                            <td>в отелах</td>
+                            <td><input type='FloatField' name='chv_otelah1' style="width: 100px" placeholder='3.14'></td>
+                        </tr>
+                        <tr>
+                            <td>выбытия коров (отелов)</td>
+                            <td><input type='FloatField' name='chvibitiya_v_otelah1' style="width: 100px" placeholder='4.11'></td>
+                        </tr>
+                        <tr>
+                            <td>сервис период</td>
+                            <td><input type='FloatField' name='chservis_period1' style="width: 100px" placeholder='129'></td>
+                        </tr>
+                        <tr>
+                            <td>сухостойный период</td>
+                            <td><input type='FloatField' name='chsuhostoyniy_period1' style="width: 100px" placeholder='64'></td>
+                        </tr>
+                        <tr>
+                            <td>выход телят на 100 голов</td>
+                            <td><input type='FloatField' name='chvihod_telyat_na100_golov1' style="width: 100px" placeholder='86.8'></td>
+                        </tr>
+                        <tr align = 'center'><td><button type="submit">START</button></td>
+                        </tr>
+                    </form>
+                    <tr>
+                        <td>Надой</td>
+                        <td>{% for chcount1 in chcounts1 %}<div align = 'center'>{{ chcount1.chraschet[0]}}</div> {%endfor%}</td>
+                    </tr>
+                    <tr>
+                        <td>Жир+белок</td>
+                        <td>{% for chcount1 in chcounts1 %}<div align = 'center'>{{ chcount1.chraschet[1]}}</div> {%endfor%}</td>
+                    </tr>
+                    <tr>
+                        <td>Выход нетелей</td>
+                        <td>{% for chcount1 in chcounts1 %}<div align = 'center'>{{ chcount1.chraschet[2]}}</div> {%endfor%}</td>
+                    </tr>
+                    <tr>
+                        <td>Выход мяса</td>
+                        <td>{% for chcount1 in chcounts1 %}<div align = 'center'>{{ chcount1.chraschet[3]}}</div> {%endfor%}</td>
+                    </tr>
+                    <tr>
+                        <td>Сохранность</td>
+                        <td>{% for chcount1 in chcounts1 %}<div align = 'center'>{{ chcount1.chraschet[4]}}</div> {%endfor%}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-4" align = 'center'>
+                <h4>Порода 2</h4>
+                <table align = 'center' bgcolor = #E0FFFF style ='width:130px'>
+                    <td>
+                        <form method="POST" action="/chinarovcount2">
+                            <tr>
+                                <td><input type='FloatField' name='chlongtitude2' placeholder=12.3 style="width: 100px" required></td>
+                            </tr>
+                            <tr>
+                                <td><input type='FloatField' name='chlatitude2' placeholder=12.3 style="width: 100px" required></td>
+                            </tr>
+                            <tr>
+                                <td><input type='TextField' name='chbreed2' style="width: 100px" placeholder='holmogorskaya' required ></td>
+                            </tr>
+                            <tr>
+                                <td>                                         
+                                    <select style="width: 116px" name='chtype2'>
+                                    <option>молочная</option>
+                                    <option>комбинированная</option>
+                                    <option>интенсивная</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type='FloatField' name='chudoy2' style="width: 100px" placeholder='4563'></td>
+                            </tr>
+                            <tr>
+                                <td><input type='FloatField' name='chjir2' style="width: 100px" placeholder='3.86'></td>
+                            </tr>
+                            <tr>
+                                <td><input type='FloatField' name='chbelok2' style="width: 100px" placeholder='3.34'></td>
+                            </tr>
+                            <tr>
+                                <td><input type='FloatField' name='chmassa2' style="width: 100px" placeholder='657'></td>
+                            </tr>
+                            <tr>
+                                <td><input type='FloatField' name='chperviy_otel_dney2' style="width: 100px" placeholder='871'></td>
+                            </tr>
+                            <tr>
+                                <td><input type='FloatField' name='chv_otelah2' style="width: 100px" placeholder='3.14'></td>
+                            </tr>
+                            <tr>
+                                <td><input type='FloatField' name='chvibitiya_v_otelah2' style="width: 100px" placeholder='4.11'></td>
+                            </tr>
+                            <tr>
+                                <td><input type='FloatField' name='chservis_period2' style="width: 100px" placeholder='129'></td>
+                            </tr>
+                            <tr>
+                                <td><input type='FloatField' name='chsuhostoyniy_period2' style="width: 100px" placeholder='64'></td>
+                            </tr>
+                            <tr>
+                                <td><input type='FloatField' name='chvihod_telyat_na100_golov2' style="width: 100px" placeholder='86.8'></td>
+                            </tr>
+                            <tr align = 'center'><td><button type="submit">START</button></td>
+                            </tr>
+                        </form>
+                        <tr>
+                            <tr>
+                                <td>Надой</td>
+                                <td>{%for chcount2 in chcounts2%}<div align = 'center'>{{ chcount2.chraschet[0]}}</div> {%endfor%}</td>
+                            </tr>
+                            <tr>
+                                <td>Жир+белок</td>
+                                <td>{% for chcount2 in chcounts2 %}<div align = 'center'>{{ chcount2.chraschet[1]}}</div> {%endfor%}</td>
+                            </tr>
+                            <tr>
+                                <td>Выход нетелей</td>
+                                <td>{% for chcount2 in chcounts2 %}<div align = 'center'>{{ chcount2.chraschet[2]}}</div> {%endfor%}</td>
+                            </tr>
+                            <tr>
+                                <td>Выход мяса</td>
+                                <td>{% for chcount2 in chcounts2 %}<div align = 'center'>{{ chcount2.chraschet[3]}}</div> {%endfor%}</td>
+                            </tr>
+                            <tr>
+                                <td>Сохранность</td>
+                                <td>{% for chcount2 in chcounts2 %}<div align = 'center'>{{ chcount2.chraschet[4]}}</div> {%endfor%}</td>
+                            </tr>
+                        </tr>
+                    </td>
+                </table>
+            </div>
+            <div class="col-sm-2">
+                <h3>Это отступ</h3>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
