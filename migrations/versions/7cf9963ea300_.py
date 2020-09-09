@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 2c052fce49bf
+Revision ID: 7cf9963ea300
 Revises: 
-Create Date: 2020-08-04 16:36:49.636631
+Create Date: 2020-08-31 16:28:15.982609
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2c052fce49bf'
+revision = '7cf9963ea300'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -24,16 +24,16 @@ def upgrade():
     sa.Column('latitude1', sa.Float(), nullable=False),
     sa.Column('breed1', sa.String(), nullable=False),
     sa.Column('type1', sa.String(), nullable=False),
-    sa.Column('udoy1', sa.Float(), nullable=False),
-    sa.Column('jir1', sa.Float(), nullable=False),
-    sa.Column('belok1', sa.Float(), nullable=False),
-    sa.Column('massa1', sa.Float(), nullable=False),
-    sa.Column('perviy_otel_dney1', sa.Float(), nullable=False),
-    sa.Column('v_otelah1', sa.Float(), nullable=False),
-    sa.Column('vibitiya_v_otelah1', sa.Float(), nullable=False),
-    sa.Column('servis_period1', sa.Float(), nullable=False),
-    sa.Column('suhostoyniy_period1', sa.Float(), nullable=False),
-    sa.Column('vihod_telyat_na100_golov1', sa.Float(), nullable=False),
+    sa.Column('yeild1', sa.Float(), nullable=False),
+    sa.Column('fat1', sa.Float(), nullable=False),
+    sa.Column('protein1', sa.Float(), nullable=False),
+    sa.Column('weight1', sa.Float(), nullable=False),
+    sa.Column('first_calving_days1', sa.Float(), nullable=False),
+    sa.Column('age_in_calving1', sa.Float(), nullable=False),
+    sa.Column('leaving_in_calving1', sa.Float(), nullable=False),
+    sa.Column('service_period1', sa.Float(), nullable=False),
+    sa.Column('dry_period1', sa.Float(), nullable=False),
+    sa.Column('calving_per100_heads1', sa.Float(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('cows_breeds2',
