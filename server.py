@@ -32,7 +32,6 @@ chcounts2r = []
 def index():
     return render_template('index.html')
 
-
 @app.route('/eng',  methods=['GET'])
 def eng():   #значения из обработчика падают сюда - в функцию.
     return render_template('eng.html', chcounts1=chcounts1, chcounts2=chcounts2)
@@ -40,8 +39,6 @@ def eng():   #значения из обработчика падают сюда
 @app.route('/rus',  methods=['GET'])
 def rus():   #значения из обработчика падают сюда - в функцию.
     return render_template('rus.html', chcounts1r=chcounts1r, chcounts2r=chcounts2r)
-
-
 
 @app.route('/eng1', methods=['POST'])
 def chinarovcount1 ():
@@ -130,7 +127,6 @@ def chinarovcount1 ():
         Please check the data you entered.
         Separate decimal places with a dot ( . )"""
     
-
 @app.route('/eng2', methods=['POST'])
 def chinarovcount2 ():
     try:
@@ -221,8 +217,6 @@ def chinarovcount2 ():
         Separate decimal places with a dot ( . )"""
 
 
-
-
 @app.route('/rus1', methods=['POST'])
 def rus1 ():
     try:
@@ -266,21 +260,21 @@ def rus1 ():
 
         def first_meat_indicator1 (type1):
             first_meat_indicator = 0
-            if type1 == 'dairy':
+            if type1 == 'молочная':
                 first_meat_indicator=238.556
-            elif type1 == 'combined':
+            elif type1 == 'комбинированная':
                 first_meat_indicator=280.038
-            elif type1 == 'intensive':
+            elif type1 == 'интенсивная':
                 first_meat_indicator=258.886
             return (first_meat_indicator)
 
         def second_meat_indicator1 (type1):
             second_meat_indicator = 0
-            if type1 == 'dairy':
+            if type1 == 'молочная':
                 second_meat_indicator=0.509
-            elif type1 == 'combined':
+            elif type1 == 'комбинированная':
                 second_meat_indicator=0.539
-            elif type1 == 'intensive':
+            elif type1 == 'интенсивная':
                 second_meat_indicator=0.503
             return (second_meat_indicator)
 
