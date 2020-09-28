@@ -1,13 +1,14 @@
 from collections import namedtuple
 import numpy as np
 import pandas as pd
-from flask import Flask,render_template 
+from flask import Flask,render_template, session
 from flask import redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 from config import Config
-app = Flask(__name__)          
+app = Flask(__name__)
+app.config['SECRET_KEY'] = '080f9c49739034afe5a0427b1f5a5263cb8a219ba8c989f234363a11e216a8a6a479'         
 app.config.from_object(Config) 
 db = SQLAlchemy(app)            
 migrate = Migrate(app, db)      
@@ -33,8 +34,8 @@ def index():
     return render_template('index.html')
 
 @app.route('/eng',  methods=['GET'])
-def eng():   #значения из обработчика падают сюда - в функцию.
-    return render_template('eng.html', chcounts1=chcounts1, chcounts2=chcounts2)
+def eng():   #значения из обработчика падают сюда - в функцию.:
+    return render_template ('eng.html', chcounts1=chcounts1, chcounts2=chcounts2)
 
 @app.route('/rus',  methods=['GET'])
 def rus():   #значения из обработчика падают сюда - в функцию.
@@ -43,6 +44,8 @@ def rus():   #значения из обработчика падают сюда
 @app.route('/eng1', methods=['POST'])
 def chinarovcount1 ():
     try:
+        chcounts1.clear()
+
         longtitude1 = float(request.form['chlongtitude1'])
         latitude1 = float(request.form['chlatitude1'])
         breed1 = request.form['chbreed1']
@@ -114,7 +117,7 @@ def chinarovcount1 ():
         total_safety1 = np.round((1 - rejection1),2)
 
         chcounts1.append(Chcount1([
-            total_yeild1, total_fat_protein1, total_heifers1, total_meat1, total_safety1
+            total_yeild1, total_fat_protein1, total_heifers1, total_meat1, total_safety1, breed1
             ]), )
 
 
@@ -130,6 +133,8 @@ def chinarovcount1 ():
 @app.route('/eng2', methods=['POST'])
 def chinarovcount2 ():
     try:
+        chcounts2.clear()
+
         longtitude2 = float(request.form['chlongtitude2'])
         latitude2 = float(request.form['chlatitude2'])
         breed2 = request.form['chbreed2']
@@ -203,7 +208,7 @@ def chinarovcount2 ():
 
         chcounts2.append(Chcount2([ #скобка открывающая кортеж
             #summ # возврат значения, указанного в функции, summ и есть это значение
-            total_nadoi2, total_jir_belok2, total_vihod_neteley2, total_myaso2, total_sohrannost2
+            total_nadoi2, total_jir_belok2, total_vihod_neteley2, total_myaso2, total_sohrannost2, breed2
             ]), ) #скобка закрывающая кортеж и его результат
 
 
@@ -217,9 +222,11 @@ def chinarovcount2 ():
         Separate decimal places with a dot ( . )"""
 
 
-@app.route('/rus1', methods=['POST'])
+@app.route('/rus1', methods=['POST', 'GET'])
 def rus1 ():
     try:
+        chcounts1r.clear()
+
         longtitude1 = float(request.form['chlongtitude1'])
         latitude1 = float(request.form['chlatitude1'])
         breed1 = request.form['chbreed1']
@@ -234,8 +241,6 @@ def rus1 ():
         service_period1 = float(request.form['chservis_period1'])
         dry_period1 = float(request.form['chsuhostoyniy_period1'])
         calving_per100_heads1 = float(request.form['chvihod_telyat_na100_golov1'])
-
-
 
 
         cowbreed1 = CowsBreeds1(
@@ -291,10 +296,10 @@ def rus1 ():
         total_safety1 = np.round((1 - rejection1),2)
 
         chcounts1r.append(Chcount1r([
-            total_yeild1, total_fat_protein1, total_heifers1, total_meat1, total_safety1
+            total_yeild1, total_fat_protein1, total_heifers1, total_meat1, total_safety1, breed1
             ]), )
 
-
+        session.modified = False
         return redirect(url_for('rus')) #передает данные в именно в функцию eng
     except ZeroDivisionError:
         return "age in calving could not be equal 1, please enter another value"
@@ -308,6 +313,7 @@ def rus1 ():
 @app.route('/rus2', methods=['POST'])
 def rus2 ():
     try:
+        chcounts2r.clear()
         longtitude2 = float(request.form['chlongtitude2'])
         latitude2 = float(request.form['chlatitude2'])
         breed2 = request.form['chbreed2']
@@ -381,7 +387,7 @@ def rus2 ():
 
         chcounts2r.append(Chcount2r([ #скобка открывающая кортеж
             #summ # возврат значения, указанного в функции, summ и есть это значение
-            total_nadoi2, total_jir_belok2, total_vihod_neteley2, total_myaso2, total_sohrannost2
+            total_nadoi2, total_jir_belok2, total_vihod_neteley2, total_myaso2, total_sohrannost2, breed2
             ]), ) #скобка закрывающая кортеж и его результат
 
 
@@ -393,6 +399,20 @@ def rus2 ():
         Или пропустили поле.
         Пожалуйста, проверте введенные вами данные.
         Отделяйте десятичные знаки точкой ( . )"""
+
+
+#ОЧИСТКА ФОРМ ОЧИСТКА ФОРМ ОЧИСТКА ФОРМ ОЧИСТКА ФОРМ ОЧИСТКА ФОРМ ОЧИСТКА ФОРМ
+@app.route ('/clearrus', methods = ['POST'])
+def clearrus ():
+    chcounts1r.clear()
+    chcounts2r.clear()
+    return redirect(url_for('rus'))
+
+@app.route ('/cleareng', methods = ['POST'])
+def cleareng ():
+    chcounts1.clear()
+    chcounts2.clear()
+    return redirect(url_for('eng'))
 
 
 

@@ -86,6 +86,10 @@
                     </form>
                     <tr>
                         <tr>
+                            <td>Breed</td>
+                            <td>{% for chcount1 in chcounts1 %}<div align = 'center'>{{ chcount1.chraschet[5]}}</div> {%endfor%}</td>
+                        </tr>
+                        <tr>
                             <td>Total yeild</td>
                             <td>{% for chcount1 in chcounts1 %}<div align = 'center'>{{ chcount1.chraschet[0]}}</div> {%endfor%}</td>
                         </tr>
@@ -165,23 +169,27 @@
                     </form>
                     <tr>
                         <tr>
-                            <td></td>
+                            <td>Breed</td>
+                            <td>{% for chcount2 in chcounts2 %}<div align = 'center'>{{ chcount2.chraschet[5]}}</div> {%endfor%}</td>
+                        </tr>
+                        <tr>
+                            <td>Total yeild</td>
                             <td>{%for chcount2 in chcounts2%}<div align = 'center'>{{ chcount2.chraschet[0]}}</div> {%endfor%}</td>
                         </tr>
                         <tr>
-                            <td></td>
+                            <td>Total fat+protein</td>
                             <td>{% for chcount2 in chcounts2 %}<div align = 'center'>{{ chcount2.chraschet[1]}}</div> {%endfor%}</td>
                         </tr>
                         <tr>
-                            <td></td>
+                            <td>Total heifers</td>
                             <td>{% for chcount2 in chcounts2 %}<div align = 'center'>{{ chcount2.chraschet[2]}}</div> {%endfor%}</td>
                         </tr>
                         <tr>
-                            <td></td>
+                            <td>Total meat</td>
                             <td>{% for chcount2 in chcounts2 %}<div align = 'center'>{{ chcount2.chraschet[3]}}</div> {%endfor%}</td>
                         </tr>
                         <tr>
-                            <td></td>
+                            <td>Herd safety</td>
                             <td>{% for chcount2 in chcounts2 %}<div align = 'center'>{{ chcount2.chraschet[4]}}</div> {%endfor%}</td>
                         </tr>
                     </tr>
@@ -191,6 +199,16 @@
             </div>
         </div>
     </div>
+    <form method="POST" action="/cleareng">
+        <table align = 'center'>
+            <tr>
+                <td align = 'left'>
+                    <button type="submit"> CLear all results </button>
+                </td>
+                <p></p>
+            </tr>
+        </table>
+    </form>
 
 
 

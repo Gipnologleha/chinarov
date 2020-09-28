@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title align = 'center'>Расчет по методике Чинарова В.И.</title>
+    <title align = 'center'>Эффективность молочных пород</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
@@ -81,9 +81,13 @@
                             <td>выход телят на 100 голов</td>
                             <td><input type='FloatField' name='chvihod_telyat_na100_golov1' style="width: 116px" placeholder='86.8'></td>
                         </tr>
-                        <tr align = 'center'><td><button type="submit">START</button></td>
+                        <td align = 'center'><button type="submit">Расчет</button></td>
                         </tr>
                     </form>
+                    <tr>
+                        <td>Порода</td>
+                        <td>{% for chcount1r in chcounts1r %}<div align = 'center'>{{ chcount1r.chraschet[5]}}</div> {%endfor%}</td>
+                    </tr>
                     <tr>
                         <td>Надой</td>
                         <td>{% for chcount1r in chcounts1r %}<div align = 'center'>{{ chcount1r.chraschet[0]}}</div> {%endfor%}</td>
@@ -159,10 +163,14 @@
                             <tr>
                                 <td><input type='FloatField' name='chvihod_telyat_na100_golov2' style="width: 116px" placeholder='86.8'></td>
                             </tr>
-                            <tr align = 'center'><td><button type="submit">START</button></td>
+                            <tr align = 'center'><td><button type="submit">Расчет</button></td>
                             </tr>
                         </form>
                         <tr>
+                            <tr>
+                                <td>Порода</td>
+                                <td>{% for chcount2r in chcounts2r %}<div align = 'center'>{{ chcount2r.chraschet[5]}}</div> {%endfor%}</td>
+                            </tr>
                             <tr>
                                 <td>Надой</td>
                                 <td>{%for chcount2r in chcounts2r%}<div align = 'center'>{{ chcount2r.chraschet[0]}}</div> {%endfor%}</td>
@@ -192,6 +200,16 @@
             </div>
         </div>
     </div>
+    <form method="POST" action="/clearrus">
+        <table align = 'center'>
+            <tr>
+                <td align = 'left'>
+                    <button type="submit"> Очистить результат </button>
+                </td>
+                <p></p>
+            </tr>
+        </table>
+    </form>
 
 
 
